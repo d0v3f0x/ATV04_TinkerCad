@@ -1,0 +1,28 @@
+const int ldrPin = A0;      // LDR
+const int relayPin = 2;     // Pino que controla o relé
+const int threshold = 500;  // Valor de corte pra saber se tá claro ou escuro
+ 
+void setup() {
+  Serial.begin(9600);            // Inicia o serial
+  pinMode(relayPin, OUTPUT);     // Define o pino do relé como saída
+  digitalWrite(relayPin, LOW);   // Começa com o relé desligado
+}
+ 
+void loop() {
+  int ldrValue = analogRead(ldrPin);  // Lê o valor do LDR
+ 
+  Serial.print("LDR: ");              // Mostra o valor no monitor serial
+  Serial.println(ldrValue);
+ 
+  if (ldrValue < threshold) {
+    // Tá escuro, liga a luz
+    digitalWrite(relayPin, HIGH);
+    Serial.println("Ligou a luz");
+  } else {
+    // Tá claro, desliga a luz
+    digitalWrite(relayPin, LOW);
+    Serial.println("Desligou a luz");
+  }
+ 
+  delay(1000);  // Espera 1 segundo antes de repetir
+}
