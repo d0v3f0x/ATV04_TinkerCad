@@ -1,5 +1,3 @@
-//
-//
 const int pinoSensor = 3;
 const int pinoRele = 2;
 
